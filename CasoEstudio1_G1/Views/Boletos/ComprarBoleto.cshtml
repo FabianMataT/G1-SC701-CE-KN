@@ -1,0 +1,99 @@
+﻿@model Boleto
+
+@{
+    ViewData["Title"] = "Comprar Boleto";
+}
+
+<div class="container mt-4">
+    <h1 class="fw-bold text-primary">Comprar Boleto</h1>
+
+    <form method="post" asp-action="ComprarBoleto">
+        
+
+        <div class="mb-3">
+            <label for="RutaId" class="form-label">Ruta</label>
+            <select class="form-control" id="RutaId" name="RutaId" required onchange="cargarDetallesRuta()">
+                <option value="">Seleccione una Ruta</option>
+                @foreach (var ruta in ViewBag.Rutas)
+                {
+                    <option value="@ruta.Id">@ruta.NombreRuta</option>
+                }
+            </select>
+        </div>
+
+        <div id="detallesRuta" class="mb-3 d-none">
+            <h4>Información de la Ruta</h4>
+            <p id="descripcionRuta"></p>
+            <h5>Horarios disponibles:</h5>
+            <div id="horariosRuta"></div>
+        </div>
+
+        <div class="mb-3">
+            <label for="VehiculoId" class="form-label">Vehículo</label>
+            <select class="form-control" id="VehiculoId" name="VehiculoId" required>
+                <option value="">Seleccione un Vehículo</option>
+                @foreach (var vehiculo in ViewBag.Vehiculos)
+                {
+                    <option value="@vehiculo.Id">@vehiculo.Placa - Capacidad: @vehiculo.CapacidadPasajeros</option>
+                }
+            </select>
+        </div>
+
+        <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" id="confirmarCompra" required>
+            <label class="form-check-label" for="confirmarCompra">
+                Confirmo que la información seleccionada es correcta.
+            </label>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Comprar Boleto</button>
+    </form>
+</div>
+
+<script>
+    async function cargarDetallesRuta() {
+        let rutaId = document.getElementById("RutaId").value;
+        let detallesRuta = document.getElementById("detallesRuta");
+        let descripcionRuta = document.getElementById("descripcionRuta");
+        let horariosRuta = document.getElementById("horariosRuta");
+
+        if (!rutaId) {
+            detallesRuta.classList.add("d-none");
+            return;
+        }
+
+        try {
+            let response = await fetch(`https://localhost:7245/api/rutas/${rutaId}`);
+            if (!response.ok) {
+                throw new Error("Error al obtener la información de la ruta.");
+            }
+
+            let data = await response.json();
+            descripcionRuta.textContent = data.descripcion;
+            horariosRuta.innerHTML = "";
+            data.horarios.forEach(horario => {
+                let checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+                checkbox.className = "form-check-input";
+                checkbox.name = "Horario";
+                checkbox.value = horario;
+
+                let label = document.createElement("label");
+                label.className = "form-check-label ms-2";
+                label.textContent = horario;
+
+                let div = document.createElement("div");
+                div.className = "form-check";
+                div.appendChild(checkbox);
+                div.appendChild(label);
+
+                horariosRuta.appendChild(div);
+            });
+
+            detallesRuta.classList.remove("d-none");
+
+        } catch (error) {
+            console.error("Error:", error);
+        }
+    }
+</script>

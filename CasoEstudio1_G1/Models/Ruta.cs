@@ -17,9 +17,13 @@ namespace CasoEstudio1_G1.Models
 
         public DateTime FechaRegistro { get; set; }
 
+
+
         [Required]
         [ForeignKey("Usuario")]
         public int UsuarioId { get; set; }
         public Usuario Usuario { get; set; }
+
+
     }
 }
