@@ -1,0 +1,33 @@
+﻿@model IEnumerable<CasoEstudio1_G1.Models.Usuario>
+
+    <h2>Lista de Usuarios</h2>
+    <a class="btn btn-primary" href="@Url.Action("Crear", "Usuario")">Agregar Usuario</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nombre Usuario</th>
+                <th>Nombre Completo</th>
+                <th>Correo</th>
+                <th>Teléfono</th>
+                <th>Rol</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var usuario in Model)
+        {
+            <tr>
+                <td>@usuario.NombreUsuario</td>
+                <td>@usuario.NombreCompleto</td>
+                <td>@usuario.Correo</td>
+                <td>@usuario.Telefono</td>
+                <td>@usuario.Rol.Nombre</td>
+                <td>
+                    <a class="btn btn-warning" href="@Url.Action("Editar", "Usuario", new { id = usuario.Id })">Editar</a>
+                    <a class="btn btn-danger" href="@Url.Action("Eliminar", "Usuario", new { id = usuario.Id })">Eliminar</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>

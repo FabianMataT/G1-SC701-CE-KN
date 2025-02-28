@@ -1,0 +1,29 @@
+﻿@model IEnumerable<CasoEstudio1_G1.Models.Ruta>
+
+    <h2>Lista de Rutas</h2>
+    <a class="btn btn-primary" href="@Url.Action("Crear", "Ruta")">Agregar Ruta</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nombre Ruta</th>
+                <th>Descripción</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var ruta in Model)
+        {
+            <tr>
+                <td>@ruta.NombreRuta</td>
+                <td>@ruta.Descripcion</td>
+                <td>@(ruta.Estado ? "Activo" : "Inactivo")</td>
+                <td>
+                    <a class="btn btn-warning" href="@Url.Action("Editar", "Ruta", new { id = ruta.Id })">Editar</a>
+                    <a class="btn btn-danger" href="@Url.Action("Eliminar", "Ruta", new { id = ruta.Id })">Eliminar</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
