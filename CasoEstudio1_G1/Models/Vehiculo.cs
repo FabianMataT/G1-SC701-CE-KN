@@ -21,16 +21,16 @@ namespace CasoEstudio1_G1.Models
         [Required]
         [ForeignKey("Estado")]
         public int EstadoId { get; set; }
-        public Estado Estado { get; set; }
+        public Estado? Estado { get; set; }
 
         [Required]
         [ForeignKey("Usuario")]
         public int UsuarioId { get; set; }
-        public Usuario Usuario { get; set; }
+        public Usuario? Usuario { get; set; }
 
         [Required]
         [ForeignKey("Ruta")]
         public int RutaId { get; set; }
-        public Ruta Ruta { get; set; }
+        public Ruta? Ruta { get; set; }
     }
 }

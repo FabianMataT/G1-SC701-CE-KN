@@ -1,0 +1,68 @@
+﻿@model Vehiculo
+
+@{
+    ViewData["Title"] = "Editar Vehículo";
+}
+
+<div class="container mt-4">
+    <h1 class="fw-bold text-primary">Editar Vehículo</h1>
+
+    <form method="post" class="mt-4">
+        <input type="hidden" name="Id" value="@Model.Id" />
+
+        <div class="mb-3">
+            <label for="Placa" class="form-label">Placa</label>
+            <input type="text" class="form-control" id="Placa" name="Placa" value="@Model.Placa" required />
+        </div>
+
+        <div class="mb-3">
+            <label for="Modelo" class="form-label">Modelo</label>
+            <input type="text" class="form-control" id="Modelo" name="Modelo" value="@Model.Modelo" required />
+        </div>
+
+        <div class="mb-3">
+            <label for="CapacidadPasajeros" class="form-label">Capacidad de Pasajeros</label>
+            <input type="number" class="form-control" id="CapacidadPasajeros" name="CapacidadPasajeros" value="@Model.CapacidadPasajeros" required />
+        </div>
+
+        <div class="mb-3">
+            <label for="EstadoId" class="form-label">Estado</label>
+            <select class="form-control" id="EstadoId" name="EstadoId" required>
+                <option value="">Seleccione un Estado</option>
+                @foreach (var estado in ViewBag.Estados)
+                {
+                    if (estado.Id == Model.EstadoId)
+                    {
+                        <option value="@estado.Id" selected>@estado.Nombre</option>
+                    }
+                    else
+                    {
+                        <option value="@estado.Id">@estado.Nombre</option>
+                    }
+                }
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="RutaId" class="form-label">Ruta</label>
+            <select class="form-control" id="RutaId" name="RutaId" required>
+                <option value="">Seleccione una Ruta</option>
+                @foreach (var ruta in ViewBag.Rutas)
+                {
+                    if (ruta.Id == Model.RutaId)
+                    {
+                        <option value="@ruta.Id" selected>@ruta.NombreRuta</option>
+                    }
+                    else
+                    {
+                        <option value="@ruta.Id">@ruta.NombreRuta</option>
+                    }
+                }
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Actualizar Vehículo</button>
+        <a href="@Url.Action("ListarVehiculos")" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+
