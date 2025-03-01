@@ -1,0 +1,27 @@
+﻿@model CasoEstudio1_G1.Models.Ruta
+
+<h2>Editar Ruta</h2>
+<form asp-action="Editar">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-group">
+        <label>Nombre Ruta</label>
+        <input asp-for="NombreRuta" class="form-control" required />
+    </div>
+
+    <div class="form-group">
+        <label>Descripción</label>
+        <textarea asp-for="Descripcion" class="form-control"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label>Estado</label>
+        <select asp-for="Estado" class="form-control">
+            <option value="true">Activo</option>
+            <option value="false">Inactivo</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-success">Actualizar</button>
+    <a class="btn btn-secondary" href="@Url.Action("Index", "Ruta")">Cancelar</a>
+</form>

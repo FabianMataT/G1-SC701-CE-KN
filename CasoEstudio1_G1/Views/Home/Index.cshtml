@@ -25,3 +25,28 @@
 
     <h5 class="fw-bold text-secondary">VII Cuatrimestre</h5>
 </div>
+<h1>Bienvenido al Sistema de Gestión de Transporte</h1>
+<p>Seleccione una opción para gestionar los datos.</p>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body text-center">
+                <h5 class="card-title">Gestión de Usuarios</h5>
+                <p class="card-text">Administra los usuarios del sistema.</p>
+                <a href="@Url.Action("Index", "Usuario")" class="btn btn-primary">Ir a Usuarios</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body text-center">
+                <h5 class="card-title">Gestión de Rutas</h5>
+                <p class="card-text">Administra las rutas del transporte.</p>
+                <a href="@Url.Action("Index", "Ruta")" class="btn btn-primary">Ir a Rutas</a>
+            </div>
+        </div>
+    </div>
+</div>
+
