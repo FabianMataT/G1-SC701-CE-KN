@@ -3,10 +3,8 @@ using CasoEstudio1_G1_API.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<ApplicationDbContext>(op =>
@@ -14,12 +12,18 @@ builder.Services.AddDbContext<ApplicationDbContext>(op =>
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.MapGet("/api/routes", async (ApplicationDbContext context) =>
+{
+    var rutas = await context.Rutas.ToListAsync();
+    return Results.Ok(rutas);
+});
 
 app.UseHttpsRedirection();
 

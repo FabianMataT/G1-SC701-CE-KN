@@ -1,4 +1,5 @@
 using CasoEstudio1_G1.Models;
+using CasoEstudio1_G1.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +9,10 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDbContext>(op => 
 {
     op.UseSqlServer(builder.Configuration.GetConnectionString("CasoEstudio"));
+});
+builder.Services.AddHttpClient<RutaService>(client =>
+{
+    client.BaseAddress = new Uri("https://localhost:7245/");
 });
 
 var app = builder.Build();
