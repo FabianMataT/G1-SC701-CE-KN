@@ -21,5 +21,16 @@ namespace CasoEstudio1_G1.Services
             }
             return null;
         }
+
+        public async Task<Ruta> GetRutaAsync(int id)
+        {
+            var response = await _httpClient.GetAsync($"api/routes/{id}");
+            if (response.IsSuccessStatusCode)
+            {
+                var ruta = await response.Content.ReadFromJsonAsync<Ruta>();
+                return ruta;
+            }
+            return null;
+        }
     }
 }

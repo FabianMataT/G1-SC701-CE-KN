@@ -1,0 +1,25 @@
+﻿@model CasoEstudio1_G1.Models.Ruta
+
+@{
+    ViewData["Title"] = "Detalles de la Ruta";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-lg border-0 rounded-3">
+        <div class="card-header bg-primary text-white text-center">
+            <h2 class="mb-0">Detalles de la Ruta</h2>
+        </div>
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3 font-weight-bold">@Html.DisplayNameFor(model => model.NombreRuta)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.NombreRuta)</dd>
+
+                <dt class="col-sm-3 font-weight-bold">@Html.DisplayNameFor(model => model.Descripcion)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Descripcion)</dd>
+            </dl>
+        </div>
+        <div class="card-footer text-center">
+            <a asp-action="Index" class="btn btn-secondary">&#8592; Regresar</a>
+        </div>
+    </div>
+</div>

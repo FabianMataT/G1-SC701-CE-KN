@@ -9,37 +9,52 @@
     <link rel="stylesheet" href="~/CasoEstudio1_G1.styles.css" asp-append-version="true" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">CasoEstudio1_G1</a>
+    <header class="bg-primary">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-primary border-bottom box-shadow">
+            <div class="container-fluid bg-primary">
+                <a class="navbar-brand text-light fw-bold" asp-area="" asp-controller="Home" asp-action="Index">CasoEstudio1_G1</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <div class="navbar-collapse collapse justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
+                            <a class="nav-link text-light fw-bold" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Vehiculo" asp-action="ListarVehiculos">Gestión de Vehiculos</a>
+                            <a class="nav-link text-light fw-bold" asp-area="" asp-controller="Vehiculo" asp-action="ListarVehiculos">Gestión de Vehiculos</a>
                         </li>
-                           <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Boletos" asp-action="ComprarBoleto">Comprar Boleto</a>
+
+                        <!-- Dropdown de Boletos -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-light fw-bold" href="#" id="boletosDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Boletos
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="boletosDropdown">
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Boletos" asp-action="ComprarBoleto">Comprar Boleto</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Boletos" asp-action="BoletosVendidos">Boletos Vendidos</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Boletos" asp-action="BoletosPorRutaAsignada">Boletos Vendidos Por Ruta</a></li>
+                            </ul>
+                        </li>
+
+                        <!-- Dropdown de Rutas -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-light fw-bold" href="#" id="rutasDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Rutas
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="rutasDropdown">
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Ruta" asp-action="Index">Gestionar Rutas</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="RutasApi" asp-action="Index">Consultar Rutas Disponibles</a></li>
+                            </ul>
+
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-light fw-bold" asp-area="" asp-controller="Usuario" asp-action="Index">Usuarios</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Boletos" asp-action="BoletosVendidos">Boletos Vendidos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Boletos" asp-action="BoletosPorRutaAsignada">Boletos Vendidos Por Ruta Asignada</a>
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="Index">Usuarios</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Ruta" asp-action="Index">Rutas</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacidad</a>
+                            <a class="nav-link text-light fw-bold" asp-area="" asp-controller="Dashboard" asp-action="Dashboard">Dashboard para Admins</a>
                         </li>
                     </ul>
                 </div>
@@ -65,4 +80,3 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
-

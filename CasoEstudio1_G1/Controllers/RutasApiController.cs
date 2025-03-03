@@ -4,11 +4,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CasoEstudio1_G1.Controllers
 {
-    public class RutasController : Controller
+    public class RutasApiController : Controller
     {
         private readonly RutaService _rutaService;
 
-        public RutasController(RutaService rutaService)
+        public RutasApiController(RutaService rutaService)
         {
             _rutaService = rutaService;
         }
@@ -22,6 +22,23 @@ namespace CasoEstudio1_G1.Controllers
             }
 
             return View(rutas);
+        }
+
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var ruta = await _rutaService.GetRutaAsync(id.Value);
+
+            if (ruta == null)
+            {
+                return NotFound();
+            }
+
+            return View(ruta);
         }
 
     }
